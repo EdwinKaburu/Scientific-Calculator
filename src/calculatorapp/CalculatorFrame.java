@@ -88,6 +88,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
         btnEqual = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton23.setText("jButton13");
 
@@ -305,6 +306,8 @@ public class CalculatorFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
                 .addContainerGap())
@@ -318,9 +321,11 @@ public class CalculatorFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
                         .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
@@ -333,7 +338,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
         String history = "";
         DefaultListModel memory = new DefaultListModel();
 
-        for(String s : numbers)
+        for(String s : numbers) 
         {
             history = history.concat(s);
         }
@@ -648,6 +653,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton23;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
