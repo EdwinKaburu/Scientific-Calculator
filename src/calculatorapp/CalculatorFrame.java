@@ -333,7 +333,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
         String history = "";
         DefaultListModel memory = new DefaultListModel();
 
-        for(String s : numbers)
+        for(String s : numbers) 
         {
             history = history.concat(s);
         }
