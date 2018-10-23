@@ -19,7 +19,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *This is a Change To the File
  * @author pierrethomas
  */
 public class CalculatorFrame extends javax.swing.JFrame {
@@ -400,7 +400,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
