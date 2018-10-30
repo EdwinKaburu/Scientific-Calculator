@@ -91,11 +91,12 @@ public class CalculatorFrame extends javax.swing.JFrame {
         btnDecimal = new javax.swing.JButton();
         btnEqual = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        Cb_Addition = new javax.swing.JCheckBox();
-        Cb_Multipy = new javax.swing.JCheckBox();
+        jPanel4 = new javax.swing.JPanel();
         Cb_Subtraction = new javax.swing.JCheckBox();
         Cb_Divison = new javax.swing.JCheckBox();
         btnBegin = new javax.swing.JButton();
+        Cb_Multipy = new javax.swing.JCheckBox();
+        Cb_Addition = new javax.swing.JCheckBox();
 
         jButton23.setText("jButton13");
 
@@ -116,14 +117,14 @@ public class CalculatorFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -219,59 +220,16 @@ public class CalculatorFrame extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
-        Cb_Addition.setBackground(new java.awt.Color(102, 102, 102));
-        Cb_Addition.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Cb_Addition.setText("Add");
-
-        Cb_Multipy.setBackground(new java.awt.Color(102, 102, 102));
-        Cb_Multipy.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Cb_Multipy.setText("Multi");
-
-        Cb_Subtraction.setBackground(new java.awt.Color(102, 102, 102));
-        Cb_Subtraction.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Cb_Subtraction.setText("Sub");
-
-        Cb_Divison.setBackground(new java.awt.Color(102, 102, 102));
-        Cb_Divison.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Cb_Divison.setText("Div");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(Cb_Addition, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(Cb_Subtraction, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(Cb_Multipy)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Cb_Divison, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+            .addGap(0, 276, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cb_Addition, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cb_Subtraction, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cb_Divison, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cb_Multipy, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+            .addGap(0, 125, Short.MAX_VALUE)
         );
-
-        btnBegin.setBackground(new java.awt.Color(255, 0, 0));
-        btnBegin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnBegin.setText("Begin");
-        btnBegin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBeginActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -315,14 +273,9 @@ public class CalculatorFrame extends javax.swing.JFrame {
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEqual, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDivide, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(btnBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,9 +284,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPoistiveNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,42 +321,108 @@ public class CalculatorFrame extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        Cb_Subtraction.setBackground(new java.awt.Color(102, 102, 102));
+        Cb_Subtraction.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Cb_Subtraction.setText("Sub");
+
+        Cb_Divison.setBackground(new java.awt.Color(102, 102, 102));
+        Cb_Divison.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Cb_Divison.setText("Div");
+
+        btnBegin.setBackground(new java.awt.Color(255, 0, 0));
+        btnBegin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnBegin.setText("Begin Tutor");
+        btnBegin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBeginActionPerformed(evt);
+            }
+        });
+
+        Cb_Multipy.setBackground(new java.awt.Color(102, 102, 102));
+        Cb_Multipy.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Cb_Multipy.setText("Multi");
+
+        Cb_Addition.setBackground(new java.awt.Color(102, 102, 102));
+        Cb_Addition.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Cb_Addition.setText("Add");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Cb_Addition, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cb_Divison, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Cb_Multipy, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cb_Subtraction, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cb_Addition)
+                    .addComponent(Cb_Subtraction))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cb_Divison)
+                    .addComponent(Cb_Multipy))
+                .addGap(18, 18, 18)
+                .addComponent(btnBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 928, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(302, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(107, 107, 107))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGap(22, 22, 22)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
-                    .addContainerGap()))
+                    .addContainerGap(264, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(31, 31, 31)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1)))
-                    .addContainerGap(32, Short.MAX_VALUE)))
+                    .addGap(40, 40, 40)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(24, Short.MAX_VALUE)))
         );
 
         pack();
@@ -450,116 +467,85 @@ public class CalculatorFrame extends javax.swing.JFrame {
         int div1,div2; div1=div2 =0;
         int multi1,multi2; multi1=multi2 =0;
         int sub1,sub2; sub1=sub2 =0;
+        boolean exit = false;
+        
         for(JCheckBox input : checkboxes)
         {
             if(input.isSelected())
             {
-                count++;
-                //Additions
+                while(exit == false){
+                //Addition
                 switch (input.getText()) {
-                    //Divison
+                    //Addition
                     case "Add":
-                    for(int a = 0; a < 2; a++)
-                    {
-                        if(a == 0)
-                        {
-                            sum1 = rand.nextInt(50);
-                        }
-                        else
-                        {
-                            sum2 = rand.nextInt(50);
-                        }
-                    }   int result1 = Integer.parseInt(JOptionPane.showInputDialog("What is The Sum of: " + sum1 + " + " + sum2));
+                    sum1 = rand.nextInt(50);
+                    sum2 = rand.nextInt(50); 
+                    int result1 = Integer.parseInt(JOptionPane.showInputDialog("What is The Sum of: " + sum1 + " + " + sum2));
                     if (result1 == (sum1 + sum2))
                     {
-                        jLabel1.setText("Correct Addition of " + sum1 + " + " + sum2 + "=" + result1);
+                        jLabel1.setText("Correct, " + sum1 + " + " + sum2 + " = " + result1);
                     }
                     else
                     {
-                        jLabel1.setText("Sorry In Correct,  the Sum is " + (sum1 + sum2));
+                        jLabel1.setText("Incorrect, the answer is " + (sum1 + sum2));
                     }   break;
-                    //Multiplication
-                    case "Div":
-                    for(int a = 0; a < 2; a++)
-                    {
-                        if(a == 0)
-                        {
-                            div1 = rand.nextInt(100);
-                        }
-                        else
-                        {
-                            div2 = rand.nextInt(50);
-                        }
-                    }   float result2 = Float.parseFloat(JOptionPane.showInputDialog("What is The Division of: " + div1 + " / " + div2 + "\nPlease Round To Previous Digit"));
+                    //Division
+                    case "Div":                   
+                    div1 = rand.nextInt(50);
+                    div2 = rand.nextInt(20);
+                    
+                    while(div1 % div2 != 0 && div1 !=0){
+                    div1 = rand.nextInt(50);
+                    div2 = rand.nextInt(20);
+                    } 
+                    float result2 = Float.parseFloat(JOptionPane.showInputDialog("What is The Division of: " + div1 + " / " + div2));
                     if (result2 == (div1 / div2))
                     {
-                        jLabel1.setText("Correct Division of  " + div1 + " / " + div2 + "=" + result2);
+                        jLabel1.setText("Correct, " + div1 + " / " + div2 + " = " + result2);
                     }
                     else
                     {
-                        jLabel1.setText("Sorry InCorrect,  the Division is " + (div1 / div2));
-                    }    break;
-                    //Substraction
+                        jLabel1.setText("Incorrect, the answer is " + (div1 / div2));
+                    }   
+                    break;
+                    //Multiplication
                     case "Multi":
-                    for(int a = 0; a < 2; a++)
-                    {
-                        if(a == 0)
-                        {
-                            multi1 = rand.nextInt(100);
-                        }
-                        else
-                        {
-                            multi2 = rand.nextInt(50);
-                        }
-                    }   float result3 = Float.parseFloat(JOptionPane.showInputDialog("What is The Multiplication of: " + multi1 + " * " + multi2));
+                    multi1 = rand.nextInt(20);
+                    multi2 = rand.nextInt(10);
+                    float result3 = Float.parseFloat(JOptionPane.showInputDialog("What is The Multiplication of: " + multi1 + " * " + multi2));
                     if (result3 == (multi1 * multi2))
                     {
-                        jLabel1.setText("Correct Multiplication of " + multi1 + " * " + multi2 + "=" + result3);
+                        jLabel1.setText("Correct, " + multi1 + " * " + multi2 + " = " + result3);
                     }
                     else
                     {
-                        jLabel1.setText("Sorry InCorrect,  the Division is " + (multi1 * multi2));
+                        jLabel1.setText("Incorrect, the answer is " + (multi1 * multi2));
                     }    break;
+                    //Subtraction
                     case "Sub":
-                    for(int a = 0; a < 2; a++)
-                    {
-                        if(a == 0)
-                        {
-                            sub1 = rand.nextInt(100);
-                        }
-                        else
-                        {
-                            sub2 = rand.nextInt(50);
-                        }
-                    }   float result4 = Float.parseFloat(JOptionPane.showInputDialog("What is The Substraction of: " + sub1 + " - " + sub2));
+                    sub1 = rand.nextInt(50);
+                    sub2 = rand.nextInt(50);
+                    
+                    while(!(sub1 > sub2)){
+                    sub1 = rand.nextInt(50);
+                    sub2 = rand.nextInt(50);
+                    } 
+                    float result4 = Float.parseFloat(JOptionPane.showInputDialog("What is The Substraction of: " + sub1 + " - " + sub2));
                     if (result4 == (sub1 - sub2))
                     {
-                        jLabel1.setText("Correct Substraction of " +sub1 + " - " + sub2 + "=" + result4);
+                        jLabel1.setText("Correct, " +sub1 + " - " + sub2 + " = " + result4);
                     }
                     else
                     {
-                        jLabel1.setText("Sorry InCorrect,  the Substraction is " + (sub1 - sub2));
+                        jLabel1.setText("Incorrect, the answer is " + (sub1 - sub2));
                     }    break;
                     default:
+                        exit = true;
                     break;
                 }
-
+                }
             }
         }
-        //        int sum1,sum2; sum1=sum2 =0;
-        //        for(Map.Entry<Integer, Integer> entry : addition.entrySet())
-        //        {
-            //            if(entry.getKey().equals(0))
-            //            {
-                //                sum1 = entry.getValue();
-                //            }
-            //            else
-            //            {
-                //                sum2 = entry.getValue();
-                //            }
-            //        }
-
-        // JOptionPane.showMessageDialog(null, count);
     }//GEN-LAST:event_btnBeginActionPerformed
 
      private void Results()
@@ -872,6 +858,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
