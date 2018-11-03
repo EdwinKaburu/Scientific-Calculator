@@ -17,6 +17,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *Let us make the Changes to this Project Now
@@ -26,25 +29,47 @@ public class CalculatorFrame extends javax.swing.JFrame {
     /**
      * Fixed Changes
      */
+    
+    //Numbers Are Stored as A string Then Sorted Out in the CheckValues Method and the Equation
     List<String> numbers = new ArrayList<String>(){};
+    // Result
     int result =0;
+    //Final Result
     float pointto =0;
+    //Historical Values are Stored and Can be Saved to Word Document
+    DefaultListModel memory = new DefaultListModel();
+    // Slider Default Value of One Iterations
+    int currentvalue = 1;
+    
     public CalculatorFrame() {
         initComponents();
-        
+        // Slider to Get The Numbers of Iterations Over the Tutor Questions
+        jSlider1.addChangeListener(new ChangeListener() {
+            //Override the StateChanges Since the User Can Switch the Current Default Value of the current Value
+            @Override
+            public void stateChanged(ChangeEvent event) {
+                currentvalue = ((JSlider)event.getSource()).getValue(); //Gets The Value
+                jLabel4.setText("Iterations   : " + currentvalue); // Numbers of Loops in the Questions
+            }
+        });
+         // A List to Store the Buttons Need to Perform Calculations
         List<JButton> numbersLetters = Arrays.asList(btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine, btnZero,
-                btnAdd, btnDecimal, btnDivide, btnPoistiveNeg, btnSubstract, btnPercentage,btnMult);
+                btnAdd, btnDecimal, btnDivide, btnPoistiveNeg, btnSubstract, btnPercentage,btnMult); 
+        // A List to Store the Buttons Need to Perform Calculations
         for (JButton buttons : numbersLetters) {
-
+            // A Listener to Capture Which Buttons was Clicked and To get Its Values
             buttons.addActionListener(new java.awt.event.ActionListener() {
+                //Override the ActionPerformed 
                 @Override
                 public void actionPerformed(ActionEvent e) 
                 {
+                    //Get the Button Text and Stores it to the List 
                     numbers.add(buttons.getText());
                     String word = "";
                     for (String num : numbers) {
                         word += num;
                     }
+                    // Display to the User As they Enter a Values to the List
                     jLabel1.setText(word);
                    
                 }
@@ -96,6 +121,9 @@ public class CalculatorFrame extends javax.swing.JFrame {
         Cb_Subtraction = new javax.swing.JCheckBox();
         Cb_Divison = new javax.swing.JCheckBox();
         btnBegin = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
+        jLabel4 = new javax.swing.JLabel();
 
         jButton23.setText("jButton13");
 
@@ -273,56 +301,65 @@ public class CalculatorFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("TUTOR SECTION SELECT CATEGORY");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSeven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAC, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnEight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPoistiveNeg))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnNine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPercentage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnOne, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnFour, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnFive, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnZero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnThree, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSix, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDecimal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMult, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSubstract, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEqual, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDivide, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
+                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnSeven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnAC, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnEight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnPoistiveNeg))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnNine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnPercentage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnOne, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnFour, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnFive, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnZero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnThree, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSix, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnDecimal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMult, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSubstract, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEqual, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDivide, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel3)))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,14 +367,11 @@ public class CalculatorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPoistiveNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDivide, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnDivide, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnAC, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnPercentage, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -356,25 +390,41 @@ public class CalculatorFrame extends javax.swing.JFrame {
                                 .addComponent(btnFive, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnSix, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnOne, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnThree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(14, 14, 14)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnOne, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnThree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(14, 14, 14))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnZero, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDecimal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEqual, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnEqual, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Iterations   :  50");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 928, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(322, 322, 322)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(412, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -391,7 +441,10 @@ public class CalculatorFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(386, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(31, 31, 31)
@@ -405,7 +458,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addGap(18, 18, 18)
                             .addComponent(jScrollPane1)))
-                    .addContainerGap(32, Short.MAX_VALUE)))
+                    .addContainerGap(29, Short.MAX_VALUE)))
         );
 
         pack();
@@ -413,17 +466,28 @@ public class CalculatorFrame extends javax.swing.JFrame {
 
     private void btnACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACActionPerformed
         // TODO add your handling code here:
+        
+        //This Method is Intended to Store Historical Data and to Reset the Calculator
+        
+        // History to be Stored
         String history = "";
-        DefaultListModel memory = new DefaultListModel();
-
+        // Get the History Data from the Numbers
         for(String s : numbers)
         {
+            // Concate All Values In the List into One String 
             history = history.concat(s);
         }
+        // Add it to the Jlist  and It is Displayed 
         memory.addElement(history.concat(" = " + Float.toString(pointto)));
+         // Add it to the Jlist  and It is Displayed 
         jList1.setModel(memory);
+        
+        //Clear All Values Inlcude the List
         numbers.clear();
+        result = 0;
+        pointto= 0;
         jLabel1.setText("");
+        //Reset Calculator
     }//GEN-LAST:event_btnACActionPerformed
 
     private void btnEqualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualActionPerformed
@@ -432,219 +496,200 @@ public class CalculatorFrame extends javax.swing.JFrame {
 
     private void btnBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeginActionPerformed
         // TODO add your handling code here:
+        
+        // Tutor Sections Inteded to Display Random Questions and Values to The User Intended to be Solved
+        // Random Statement
         Random rand = new Random();
-        //        for(int a = 0; a < 3; a++)
-        //        {
-            //            JOptionPane.showMessageDialog(null, rand.nextInt(25));
-            //        }
-
-        //int value = rand.nextInt(50);
-        List<JCheckBox> checkboxes = Arrays.asList(Cb_Addition,Cb_Divison,Cb_Multipy,Cb_Subtraction);
+        //Store the CheckBoxes Into the List, Didn't Initialize this at the Beginning In Order to Save Time Loading Up
+        List<JCheckBox> checkboxes = Arrays.asList(Cb_Addition, Cb_Divison, Cb_Multipy, Cb_Subtraction);
+        //Count the Numbers of Iterations Being Made
         int count = 0;
-        Map <Integer, Integer> addition, substraction;
-        addition = substraction = new HashMap<Integer,Integer>();
+        //Initialize the Sum,Division,Multiply and Substract Componenets
+        int sum1, sum2;sum1 = sum2 = 0;
+        int div1, div2; div1 = div2 = 0;
+        int multi1, multi2;multi1 = multi2 = 0;
+        int sub1, sub2;sub1 = sub2 = 0;
+        //Iterate Thru the List of the CheckBoxes
+        for (JCheckBox input : checkboxes) {
+            
+            //Capture Those Selected Only
+            if (input.isSelected()) {
+                //Iterate Thru With the Slider Value Selected by the Useer
+                for (int a = 0; a < currentvalue; a++) {
+                    //Count Number of Iterations 
+                    count++;
+                    //Additions
+                    switch (input.getText()) {
+                        //Divison
+                        case "Add":
+                            sum1 = rand.nextInt(100); // A Random Values
+                            sum2 = rand.nextInt(50); // A Random Value
+                            
+                            // Display Random Values and Get User Input 
+                            float result1 = Integer.parseInt(JOptionPane.showInputDialog("What is The Sum of: " + sum1 + " + " + sum2)); 
+                            
+                            if (result1 == (sum1 + sum2)) {
+                                //Correct Dislay Correct Answer
+                                jLabel1.setText("Correct Addition of " + sum1 + " + " + sum2 + "=" + result1);
+                            } else {
+                                //Incorrect Display Wrong Answer
+                                jLabel1.setText("Sorry In Correct,  the Sum is " + (sum1 + sum2));
+                            }
+                            break;
+                        //Multiplication
+                        case "Div":
 
-        String add = "+";
-
-        int sum1,sum2; sum1=sum2 =0;
-        int div1,div2; div1=div2 =0;
-        int multi1,multi2; multi1=multi2 =0;
-        int sub1,sub2; sub1=sub2 =0;
-        for(JCheckBox input : checkboxes)
-        {
-            if(input.isSelected())
-            {
-                count++;
-                //Additions
-                switch (input.getText()) {
-                    //Divison
-                    case "Add":
-                    for(int a = 0; a < 2; a++)
-                    {
-                        if(a == 0)
-                        {
-                            sum1 = rand.nextInt(50);
-                        }
-                        else
-                        {
-                            sum2 = rand.nextInt(50);
-                        }
-                    }   int result1 = Integer.parseInt(JOptionPane.showInputDialog("What is The Sum of: " + sum1 + " + " + sum2));
-                    if (result1 == (sum1 + sum2))
-                    {
-                        jLabel1.setText("Correct Addition of " + sum1 + " + " + sum2 + "=" + result1);
-                    }
-                    else
-                    {
-                        jLabel1.setText("Sorry In Correct,  the Sum is " + (sum1 + sum2));
-                    }   break;
-                    //Multiplication
-                    case "Div":
-                    for(int a = 0; a < 2; a++)
-                    {
-                        if(a == 0)
-                        {
                             div1 = rand.nextInt(100);
-                        }
-                        else
-                        {
                             div2 = rand.nextInt(50);
-                        }
-                    }   float result2 = Float.parseFloat(JOptionPane.showInputDialog("What is The Division of: " + div1 + " / " + div2 + "\nPlease Round To Previous Digit"));
-                    if (result2 == (div1 / div2))
-                    {
-                        jLabel1.setText("Correct Division of  " + div1 + " / " + div2 + "=" + result2);
-                    }
-                    else
-                    {
-                        jLabel1.setText("Sorry InCorrect,  the Division is " + (div1 / div2));
-                    }    break;
-                    //Substraction
-                    case "Multi":
-                    for(int a = 0; a < 2; a++)
-                    {
-                        if(a == 0)
-                        {
+                            
+                            // Display Random Values and Get User Input 
+                            float result2 = Float.parseFloat(JOptionPane.showInputDialog("What is The Division of: " + div1 + " / " + div2 + "\nPlease Round To Previous Digit"));
+                            
+                            if (result2 == (div1 / div2)) {
+                                //Correct Dislay Correct Answer
+                                jLabel1.setText("Correct Division of  " + div1 + " / " + div2 + "=" + result2);
+                            } else {
+                                //Incorrect Display Wrong Answer
+                                jLabel1.setText("Sorry InCorrect,  the Division is " + (div1 / div2));
+                            }
+                            break;
+                        //Substraction
+                        case "Multi":
                             multi1 = rand.nextInt(100);
-                        }
-                        else
-                        {
                             multi2 = rand.nextInt(50);
-                        }
-                    }   float result3 = Float.parseFloat(JOptionPane.showInputDialog("What is The Multiplication of: " + multi1 + " * " + multi2));
-                    if (result3 == (multi1 * multi2))
-                    {
-                        jLabel1.setText("Correct Multiplication of " + multi1 + " * " + multi2 + "=" + result3);
-                    }
-                    else
-                    {
-                        jLabel1.setText("Sorry InCorrect,  the Division is " + (multi1 * multi2));
-                    }    break;
-                    case "Sub":
-                    for(int a = 0; a < 2; a++)
-                    {
-                        if(a == 0)
-                        {
+                            
+                            // Display Random Values and Get User Input 
+                            float result3 = Float.parseFloat(JOptionPane.showInputDialog("What is The Multiplication of: " + multi1 + " * " + multi2));
+                            
+                            if (result3 == (multi1 * multi2)) {
+                                 //Correct Dislay Correct Answer
+                                jLabel1.setText("Correct Multiplication of " + multi1 + " * " + multi2 + "=" + result3);
+                            } else {
+                                //Incorrect Display Wrong Answer
+                                jLabel1.setText("Sorry InCorrect,  the Multiplication is " + (multi1 * multi2));
+                            }
+                            break;
+                        case "Sub":
                             sub1 = rand.nextInt(100);
-                        }
-                        else
-                        {
                             sub2 = rand.nextInt(50);
-                        }
-                    }   float result4 = Float.parseFloat(JOptionPane.showInputDialog("What is The Substraction of: " + sub1 + " - " + sub2));
-                    if (result4 == (sub1 - sub2))
-                    {
-                        jLabel1.setText("Correct Substraction of " +sub1 + " - " + sub2 + "=" + result4);
+                            
+                            // Display Random Values and Get User Input 
+                            float result4 = Float.parseFloat(JOptionPane.showInputDialog("What is The Substraction of: " + sub1 + " - " + sub2));
+                            
+                            if (result4 == (sub1 - sub2)) {
+                                 //Correct Dislay Correct Answer
+                                jLabel1.setText("Correct Substraction of " + sub1 + " - " + sub2 + "=" + result4);
+                            } else {
+                                //Incorrect Display Wrong Answer
+                                jLabel1.setText("Sorry InCorrect,  the Substraction is " + (sub1 - sub2));
+                            }
+                            break;
+                        default:
+                            jLabel1.setText("Sorry Unknown Error is ");
+                            break;
                     }
-                    else
-                    {
-                        jLabel1.setText("Sorry InCorrect,  the Substraction is " + (sub1 - sub2));
-                    }    break;
-                    default:
-                    break;
                 }
 
+            } else {
+                jLabel1.setText("System Failure : Select CheckBox Options");
             }
         }
-        //        int sum1,sum2; sum1=sum2 =0;
-        //        for(Map.Entry<Integer, Integer> entry : addition.entrySet())
-        //        {
-            //            if(entry.getKey().equals(0))
-            //            {
-                //                sum1 = entry.getValue();
-                //            }
-            //            else
-            //            {
-                //                sum2 = entry.getValue();
-                //            }
-            //        }
-
-        // JOptionPane.showMessageDialog(null, count);
     }//GEN-LAST:event_btnBeginActionPerformed
 
      private void Results()
     {
+        //Method is Intended Only To Compute Result and To Display it to the User
+        
+        //Count Num of Iterations
        int count = 0;
-       //int pointto = 0;
-      
       for(int i = 0; i < Equation(numbers).size(); i++)
       {
-          if(Equation(numbers).get(i).equals("+"))
+          if(Equation(numbers).get(i).equals("+")) // Find the Plus Sign Location from the Equation Method
           {
-                count++;
+                count++;//Counts 
                 if(count <= 1)
                 {
-                  //  System.out.println("Less Add Ins\t" + Equation(numbers).get(i - 1));
-                   // System.out.println("LessAdd Ins\t" + Equation(numbers).get(i + 1));
+                    //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Sum them up
                     pointto += Float.parseFloat(Equation(numbers).get(i - 1)) + Float.parseFloat(Equation(numbers).get(i + 1));
                 }
                 else 
                 {
-                    //System.out.println("Great Add Ins\t" + Equation(numbers).get(i - 1));
-                    //System.out.println("Else Great Add Ins\t" + Equation(numbers).get(i + 1));
+                    //if there is more is takes the Next Digit A-head from Current and Sums it Up 
+                    
                     pointto += Float.parseFloat(Equation(numbers).get(i + 1));
                 }
-               
-               // System.out.println("Count Add\t" + count);
           }
-          else if(Equation(numbers).get(i).equals("*"))
+          else if(Equation(numbers).get(i).equals("*"))// Find the Multiplication Sign Location from the Equation Method
           {
                count++;
                if(count <= 1)
                {
-                  //  System.out.println("Less Multi Ins\t" + Equation(numbers).get(i - 1));
-                   // System.out.println("Less Multi Ins\t" + Equation(numbers).get(i + 1));
+                    //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Multi them up
                     pointto += Float.parseFloat(Equation(numbers).get(i - 1)) * Float.parseFloat(Equation(numbers).get(i + 1));
                }
                else
                {
-                    //System.out.println("Great Multi Ins\t" + Equation(numbers).get(i - 1));
-                  //  System.out.println("Else Great Multi Ins\t" + Equation(numbers).get(i + 1));
+                   //if there is more is takes the Next Digit A-head from Current and Mulit it Up 
                     pointto *=  Float.parseFloat(Equation(numbers).get(i + 1));
                }
-              
-               // System.out.println("Count Multi\t" + count);
           } 
           else if(Equation(numbers).get(i).equals("/"))
           {
                count++;
                if(count <= 1)
                {
-                   // System.out.println("Less Divide Ins\t" + Equation(numbers).get(i - 1));
-                   // System.out.println("Less Divide Ins\t" + Equation(numbers).get(i + 1));
+                   //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Divide them up
                     pointto += Float.parseFloat(Equation(numbers).get(i - 1)) / Float.parseFloat(Equation(numbers).get(i + 1));
                }
                else
                {
-                   //System.out.println("Great Divide Ins\t" + Equation(numbers).get(i - 1));
-                   //System.out.println("Else Great Divide Ins\t" + Equation(numbers).get(i + 1));
+                   //if there is more is takes the Next Digit A-head from Current and Divide it Up 
                    pointto /= Float.parseFloat(Equation(numbers).get(i + 1));
                }
                
-              // System.out.println("Count Divide\t" + count);
           }
           else if(Equation(numbers).get(i).equals("-"))
           {
                count++;
                if(count <= 1)
                {
-                  // System.out.println("Less Sub Ins\t" + Equation(numbers).get(i - 1));
-                  // System.out.println("Less Sub Ins\t" + Equation(numbers).get(i + 1));
+                   //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Substract them up
                    pointto += Float.parseFloat(Equation(numbers).get(i - 1)) - Float.parseFloat(Equation(numbers).get(i + 1));
                }
                else
                {
-                    //System.out.println("Great Sub Ins\t" + Equation(numbers).get(i - 1));
-                   // System.out.println("Else Great Sub Ins\t" + Equation(numbers).get(i + 1));
+                   //if there is more is takes the Next Digit A-head from Current and Substract it Up 
                     pointto -= Float.parseFloat(Equation(numbers).get(i + 1));
                }
-              
-              // System.out.println("Count Sub\t" + count);
           }
+          
+          /*
+                ***   The Following is the Logic flows of this Method(Results)
+                     1+2 => Falls under less than 1 so it takes the Previous and the Next Digit A-head  from the Current Plus Location and Sums it Up
+                            ** Step1 :  1+2  = 3 ; Three is Returned as Result
+                    
+                     1+2+4 => Falls under More than 1 so it Takes the Previous and the Next Digit A-head from the Current Plus Locations. 
+                              And Then it Switch to the Next Plus in The Eqautions and Sum it up.
+                    
+                              ** Step1 :  1+2  = 3 ;
+                              
+                              ** Step2 : 3 + 4 = 7 , Seven is Returned as Result And Displayed 
+                              ** Final Deduction : 2 Plus Symbols at 1 and 3  
+                                                   1    +   2   +   4
+                                                   -    -   -   -   -
+                                                   0    1   2   3   4  => Index of the Symbol Locations
+                    
+                ***   The For Loops Handles the With Symbol should be Next eg.
+          
+                    69 - 2 + 5 -8
+                              ** Step 1 : 69 - 2 =   67; 
+                              ** Step 2 : 67 + 5  =  72;
+                              ** Step 3 : 72 - 8 =   64; Sixty Four is Returned as Result And Displayed 
+                    
+           */
        
       }
-         //System.out.println("Result\t" + pointto);
-        jLabel1.setText(Float.toString(pointto));
+        jLabel1.setText(Float.toString(pointto)); // Display the Result on the Label
     }
     private static List<String> Equation(List<String>numbers)
     {
@@ -767,41 +812,22 @@ public class CalculatorFrame extends javax.swing.JFrame {
     /*Method doesn't function are Required*/
     private static Map<String,List<Integer>> CheckValue(List<String> numbers)
     {
-
+        // GET THE SPECIFIC INDEX OF THE SYMBOLS [( 1 + 3) = > "+ " IS AT INDEX 1]
         
         Map<String,List<Integer>> map1 = new HashMap<String,List<Integer>>();
         
-        List<Integer> plusIndex,minusIndex,DivideIndex,MultiIndex; //List for Error Logs
-        plusIndex = minusIndex = DivideIndex = MultiIndex = new ArrayList<Integer>(){};
+        List<Integer> plusIndex = new ArrayList<Integer>(){}; 
         
         for(int i = 0; i < numbers.size(); i++)
         {
-            switch (numbers.get(i)) {
-                case "+":
-                    plusIndex.add(i);
-                    //plusSign.add(numbers.get(i));
-                    break;
-                case "-":
-                    minusIndex.add(i);
-                    //minusSign.add(numbers.get(i));
-                    break;
-                case "/":
-                    DivideIndex.add(i);
-                    //DivideSign.add(numbers.get(i));
-                    break;
-                case "*":
-                    MultiIndex.add(i);
-                    //MultiSign.add(numbers.get(i));
-                    break;
-                default:
-                    break;
+            if(numbers.get(i).equals("+") || numbers.get(i).equals("-") || numbers.get(i).equals("/") || numbers.get(i).equals("*"))
+            {
+                plusIndex.add(i);
+                
+                //System.out.println("Index\t" + i);
             }
         }
         map1.put("Plus_Sign",plusIndex);
-        map1.put("Minus_Sign",minusIndex);
-        map1.put("Divide_Sign",DivideIndex);
-        map1.put("Multi_Sign",MultiIndex);
-        
         return map1;
     }
     /**
@@ -868,10 +894,13 @@ public class CalculatorFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton23;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSlider jSlider1;
     // End of variables declaration//GEN-END:variables
 }
