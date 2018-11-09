@@ -26,6 +26,7 @@ import javax.swing.event.ChangeListener;
  */
 public class CalculatorFrame extends javax.swing.JFrame {
 
+    
     /**
      * Fixed Changes
      */
@@ -124,6 +125,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSlider1 = new javax.swing.JSlider();
         jLabel4 = new javax.swing.JLabel();
+        btnGraph = new javax.swing.JButton();
 
         jButton23.setText("jButton13");
 
@@ -417,6 +419,13 @@ public class CalculatorFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Iterations   :  50");
 
+        btnGraph.setText("Open Graph");
+        btnGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraphActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -425,6 +434,10 @@ public class CalculatorFrame extends javax.swing.JFrame {
                 .addGap(322, 322, 322)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(412, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -442,7 +455,9 @@ public class CalculatorFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(386, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addComponent(btnGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -595,6 +610,13 @@ public class CalculatorFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnBeginActionPerformed
+
+    private void btnGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraphActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Graph is a Prototype, Some Features Might Not Perform as Expected");
+        Chart openGraph = new Chart();
+        openGraph.setVisible(true);
+    }//GEN-LAST:event_btnGraphActionPerformed
 
      private void Results()
     {
@@ -879,6 +901,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnEqual;
     private javax.swing.JButton btnFive;
     private javax.swing.JButton btnFour;
+    private javax.swing.JButton btnGraph;
     private javax.swing.JButton btnMult;
     private javax.swing.JButton btnNine;
     private javax.swing.JButton btnOne;
