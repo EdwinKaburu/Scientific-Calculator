@@ -22,6 +22,10 @@ import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -29,17 +33,34 @@ import javax.swing.JPanel;
  */
 public class Chart extends javax.swing.JFrame {
 
-    DefaultListModel memory = new DefaultListModel();
+    int count = 0;
     
+    DefaultListModel memory = new DefaultListModel();
+    DefaultTableModel model1; // For the Table1
+    DefaultTableModel model2; // For the Table2
+    DefaultTableModel model3; // For the Table3
+    DefaultTableModel model4; // For the Table3
     /** Creates new form Chart */
     public Chart() {
         initComponents();
-        for(int a =1; a <= 11; a++)
+        
+        UIManager UI = new UIManager();
+        UI.put("OptionPane.background", Color.red);
+        UI.put("Panel.background", Color.red);
+ 
+        model1 = (DefaultTableModel) jTable1.getModel();
+        model2 = (DefaultTableModel) jTable2.getModel();
+        model3 = (DefaultTableModel) jTable3.getModel();
+        model4 = (DefaultTableModel) jTable4.getModel();
+        for(int a =-4; a <= 4; a++)
         {
             jComboBox1.addItem(Integer.toString(a));
             jComboBox2.addItem(Integer.toString(a));
         }
-        
+        String label  = "Graph is a Prototype, Some Features Might Not Perform as Expected"+"\n" +"The Size is Width:\t " 
+                 + jPanel1.getWidth() + "\tThe Size of Frame is Height: \t" + jPanel1.getHeight() + "\nGraph Cannot be ReSized";
+      
+        JOptionPane.showMessageDialog(null,label,"ERROR",JOptionPane.WARNING_MESSAGE);
     }
 
     /** This method is called from within the constructor to
@@ -52,29 +73,53 @@ public class Chart extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(91, 91, 91));
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 400));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("y =");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("x+");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Points Displayed on Graph and Line Intersection at Frame");
 
         jButton1.setText("Draw Graph");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -83,53 +128,179 @@ public class Chart extends javax.swing.JFrame {
             }
         });
 
-        jList1.setToolTipText("");
-        jScrollPane1.setViewportView(jList1);
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "X-Frame", "Y-Frame"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable3);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("y =");
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "X-Graph", "Y-Graph"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable4);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("x^2+");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Line Crossed At This Points");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel8)
+                .addGap(2, 2, 2)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Chart", jPanel2);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "X-Frame", "X-Index", "Y-Frame", "Y-Index", "X-Graph", "Y-Graph"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("X-Frame");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("X-Index");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("Y-Frame");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Y-Index");
+        }
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "X-Graph", "Y-Graph"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("All X and Y Points, Some Might not be Graph Due to Fixed Size  of Frame ");
+        jLabel5.setToolTipText("");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("?- Frame Point Of JPanel, ?-Graph Point of X and Y Points Intersection");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("This Table Display all Intersection of lines, in the Frame");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Detailed", jPanel3);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("You can Click on Mouse to View Points For More Details Go to Detailed Tab");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1)
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,7 +310,7 @@ public class Chart extends javax.swing.JFrame {
 
         int sum = 0;
         int point2 = 0;
-
+        count = 0;
         int middle = jPanel1.getWidth() / 2;
         int middle2 = jPanel1.getHeight() / 2;
 
@@ -150,7 +321,9 @@ public class Chart extends javax.swing.JFrame {
 
         HashMap<List<Integer>, List<Integer>> map3 = new HashMap<>();
 
-        for (int l = 0; l < 20; l++) {
+        map1.put(0,0);
+        map2.put(0,0);
+        for (int l = 0; l < 30; l++) {
             //Y - Lines
             sum += 25;
             g.setColor(Color.black);
@@ -161,7 +334,9 @@ public class Chart extends javax.swing.JFrame {
                 g.drawLine(sum, jPanel1.getHeight(), sum, 0);
             }
 
-            map1.put(l, sum);
+            map1.put((l+ 1), sum);
+
+            //System.out.print("Map1\t" + sum);
 
             //X-Lines
             point2 += 25;
@@ -173,194 +348,34 @@ public class Chart extends javax.swing.JFrame {
                 g.drawLine(jPanel1.getWidth(), point2, 0, point2);
             }
 
-            map2.put(l, point2);
+            map2.put((l+1), point2);
         }
-        
-        DrawGraph(map1, map2,g, jComboBox1.getSelectedIndex(), jComboBox2.getSelectedIndex(), middle2);
-        
-//JOptionPane.showMessageDialog(null, jComboBox1.getSelectedItem() + "\tIndex\t" + jComboBox1.getSelectedIndex());
-     //  jComboBox1.getSelectedItem()
-        
-       // jComboBox1.add(this, middle2)
-       
-        
-        
-//        System.out.println("---------------------------------------------------------\n--------------------------------------------");
 
-        //        for(int a = 0; a < phase2.size() ; a ++)
-        //        {
-            //             //System.out.println("Y\t" + phase2.get(a) + "\t" + a );
-            //
-            ////            for (Map.Entry<Integer, Integer> entry : map1.entrySet())
-            ////            {
-                //                if(phase2.get(a) < middle)
-                //                {
-                    //                    // System.out.println("Y\t" + phase2.get(a) + "\t" + a );
-                    //                }
-                //                else
-                //                {
-                    //                     System.out.println("Y\t" + phase2.get(a) + "\t" + a );
-                    //                }
-                ////                if( phase2.get(a) < middle && entry.getValue().equals(phase2.get(a)) )
-                ////                {
-                    //////                    System.out.println("Y\t" + phase2.get(a) + "\t" + a + "\t" + (a-a));
-                    ////                }
-                ////                else
-                ////                {
-                    ////                     System.out.println("Y\t" + phase2.get(a) + "\t" + a );
-                    ////                }
-                //            //}
-            //        }
+        
+        int slope = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        int slope2 = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+        
+        HashMap<Integer, Integer> vpoints12 = x_yPoints(slope,slope2);
+       // int count2 =0;
+        for (Map.Entry<Integer, Integer> entry : vpoints12.entrySet())
+        {
+             //System.out.println("X\t" + entry.getKey() + "\tY\t" + entry.getKey());
+             
+             model2.insertRow(count++, new Object[]{
+                    entry.getKey(),
+                    entry.getKey()
+                });
+        }
+      //  System.out.println("-----------------------------------------------------------------------------------");
 
-//        System.out.println("---------------------------------------------------------\n--------------------------------------------");
-//        int size1 = 0;
-//        //List<Integer> vpoints = new ArrayList<Integer>();
-//        List<Integer> vpoints2 = new ArrayList<Integer>();
-////        List<Integer> x = new ArrayList<Integer>();
-////
-////        List<Integer> y = new ArrayList<Integer>();
-//
-//        HashMap<Integer, Integer> vpoints1 = new HashMap<>();
-//        for(int a = -10 ;a< 10; a++)
-//        {
-//            int vpoint = 2*(a)+1;
-//            System.out.println("x\t" + a +"\t y \t" + vpoint);
-//            // vpoints.add(vpoint);
-//            vpoints.put(a, vpoint);
-//        }
-
-//        for (Map.Entry<Integer, Integer> entry : map1.entrySet())
-//        {
-//            //System.out.println("Y-Lines\t" + entry.getValue());
-//            for (Map.Entry<Integer, Integer> entry1 : map2.entrySet())
-//            {
-//                for (Map.Entry<Integer, Integer> ap : vpoints.entrySet())
-//                {
-//                    if (entry1.getValue() <= middle2)
-//                    {
-//                        // System.out.println("x\t" + entry.getValue() + "\t" +  entry1.getValue());
-//                        if (entry.getValue() <= 250)
-//                        {
-//                            if(ap.getKey().equals((entry.getKey() - 9)) && ap.getValue().equals((7 - entry1.getKey())))
-//                            {
-//                                x.add(entry.getValue());
-//                                y.add(entry1.getValue());
-//                                // vpoints1.put((entry.getKey() - 9), (7 - entry1.getKey()));
-//                                // vpoints1.put(entry.getValue(), entry1.getKey());
-//                                //  System.out.println("p1\t" + entry.getValue() + "\tp2\t" +  entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t"+ (7 - entry1.getKey()) );
-//                            }
-//                            //                   System.out.println("p1111\t" + entry.getValue() + "\tp2\t" +  entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t"+ (7 - entry1.getKey()) );
-//                            // if(ap == )
-//                            // System.out.println("x\t" + entry.getValue() + "\t" +  entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t"+ (7 - entry1.getKey())  );
-//                        } else
-//                        {
-//                            if(ap.getKey().equals((entry.getKey() - 9)) && ap.getValue().equals((7 - entry1.getKey())))
-//                            {
-//                                x.add(entry.getValue());
-//                                y.add(entry1.getValue());
-//                                //vpoints1.put((entry.getKey() - 9), (7 - entry1.getKey()));
-//                                // vpoints1.put(entry.getValue(), entry1.getKey());
-//
-//                                // vpoints2.add((entry.getKey() - 9)); // Change to HashSet------------------------------------->-.-.-.-.-..-.-.-.-.-.-.-__>_>_>_>>_>_>_
-//                                // System.out.println("Found");
-//
-//                                //  System.out.println("p1\t" + entry.getValue() + "\tp2\t" +  entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t"+ (7 - entry1.getKey()) );
-//                            }
-//                            //                            else
-//                            //                            {
-//                                System.out.println("p111\t" + entry.getValue() + "\tp2\t" +  entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t"+ (7 - entry1.getKey()) );
-//                                //                            }
-//
-//                        }
-//                    }
-//                    else
-//                    {
-//                        if (entry.getValue() <= 250)
-//                        {
-//                            if(ap.getKey().equals((entry.getKey() - 9)) && ap.getValue().equals((7 - entry1.getKey())))
-//                            {
-//                                x.add(entry.getValue());
-//                                y.add(entry1.getValue());
-//                                //vpoints1.put((entry.getKey() - 9), (7 - entry1.getKey()));
-//                                //vpoints1.put(entry.getValue(), entry1.getKey());
-//                                //   System.out.println("p1\t" + entry.getValue() + "\tp2\t" +  entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t"+ (7 - entry1.getKey()) );
-//                            }
-//
-//                            //              System.out.println("p1111\t" + entry.getValue() + "\tp2\t" +  entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t"+ (7 - entry1.getKey()) );
-//
-//                        }
-//                        else
-//                        {
-//                            if(ap.getKey().equals((entry.getKey() - 9)) && ap.getValue().equals((7 - entry1.getKey())))
-//                            {
-//                                x.add(entry.getValue());
-//                                y.add(entry1.getValue());
-//                                // vpoints1.put((entry.getKey() - 9), (7 - entry1.getKey()));
-//                                //  vpoints1.put(entry.getValue(), entry1.getKey());
-//                                //  System.out.println("p1\t" + entry.getValue() + "\tp2\t" + entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t" + (7 - entry1.getKey()));
-//                            }
-//                            // System.out.println("p1111\t" + entry.getValue() + "\tp2\t" + entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t" + (7 - entry1.getKey()));
-//                            // System.out.println("p\t" + entry.getValue() + "\tp1\t" +  entry1.getValue() + "\tx\t" +(entry.getKey() - 9));
-//                        }
-//
-//                    }
-//                }
-//
-//            }
-//        }
-//        System.out.println("--------------------------------------");
-//
-//        //        List<Integer> x = new ArrayList<Integer>();
-//        //
-//        //        List<Integer> y = new ArrayList<Integer>();
-//        //        int xpoints1[] = x.stream().mapToInt(i -> i).toArray();
-//        //        int ypoints1[] = y.stream().mapToInt(i -> i).toArray();
-//
-//        for(Map.Entry<Integer, Integer> ap : vpoints1.entrySet())
-//        {
-//            //            x.add(ap.getKey());
-//            //            y.add(ap.getValue());
-//            //  System.out.println(ap.getKey());
-//        }
-//
-//        for(int x1:   x)
-//        {
-//
-//            // System.out.println(x1);
-//        }
-//        System.out.println("----------------");
-//        for(int y1 : y)
-//        {
-//            //  System.out.println(y1);
-//        }
-//        Set<List<Integer>> sp = map3.keySet();
-//
-//        List<Integer> l2 = new ArrayList<Integer>();
-//
-//        //        List<Integer> x = new ArrayList<Integer>();
-//        //
-//        //        List<Integer> y = new ArrayList<Integer>();
-//        l2.add(1);
-//        l2.add(2);
-//        l2.add(3);
-//
-//        g.setColor(Color.red);
-//
-//        //System.out.println(jPanel1.getAlignmentY());
-//        int xpoints[] = x.stream().mapToInt(i -> i).toArray();
-//        int ypoints[] = y.stream().mapToInt(i -> i).toArray();
-//        g.drawPolyline(xpoints, ypoints, x.size());
-
+        
+        
+        DrawGraph(map1, map2,g, slope, slope2, middle2);
+        
         jPanel1.addMouseListener(new MouseAdapter() {
             @Override //I override only one method for presentation
             public void mousePressed(MouseEvent e) {
-                //System.out.println(e.getX() + "," + e.getY());
-                //                if (e.getX() == 250 || e.getY() == 200) {
-                    //                    JOptionPane.showMessageDialog(null, "0 ,0");
-                    //                } else {
                     JOptionPane.showMessageDialog(null, e.getX() + "," + e.getY());
-                    //                }
-
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -369,19 +384,10 @@ public class Chart extends javax.swing.JFrame {
     {
         HashMap<Integer, Integer> vpoints = x_yPoints(slope1,slope2);
         
-        String history = "";
-//        // Get the History Data from the Numbers
-//        for(String s : numbers)
-//        {
-//            // Concate All Values In the List into One String 
-//            history = history.concat(s);
-//        }
-//        // Add it to the Jlist  and It is Displayed 
-//        memory.addElement(history.concat(" = " + Float.toString(pointto)));
-         // Add it to the Jlist  and It is Displayed 
-//        jList1.setModel(memory);
-        
-        
+        String detailed = "";
+
+        count =0;
+        int count2,count3;count2=count3 = 0;
         List<Integer> x = new ArrayList<Integer>();
 
         List<Integer> y = new ArrayList<Integer>();
@@ -389,70 +395,59 @@ public class Chart extends javax.swing.JFrame {
         {
             for (Map.Entry<Integer, Integer> entry1 : map2.entrySet())
             {
+                               
+                model1.insertRow(count++, new Object[]{
+                    entry.getValue(),
+                    entry.getKey(),
+                    entry1.getValue(),
+                    entry1.getKey(),
+                    Integer.toString((entry.getKey()-14)),
+                    Integer.toString((12- entry1.getKey())),
+                });
                 for (Map.Entry<Integer, Integer> ap : vpoints.entrySet())
                 {
-                   // history += history.concat("x: \t" + ap.getKey() + "\ty\t" + ap.getValue());
                     
-                    memory.addElement("x: \t" + ap.getKey() + "\t  y  \t" + ap.getValue());
-                    
-                    if (entry1.getValue() <= middle2)
+                    if (entry1.getValue() <= middle2) 
                     {
-                        if (entry.getValue() <= 250)
+                        if(ap.getKey().equals((entry.getKey() - 14)) && ap.getValue().equals((12 - entry1.getKey())))
                         {
-                            if(ap.getKey().equals((entry.getKey() - 9)) && ap.getValue().equals((7 - entry1.getKey())))
-                            {
-                                x.add(entry.getValue());
-                                y.add(entry1.getValue());
-                            }
-                        } else
-                        {
-                            if(ap.getKey().equals((entry.getKey() - 9)) && ap.getValue().equals((7 - entry1.getKey())))
-                            {
-                                x.add(entry.getValue());
-                                y.add(entry1.getValue());
-                            }
-                            // System.out.println("p111\t" + entry.getValue() + "\tp2\t" +  entry1.getValue() + "\tx\t" + (entry.getKey() - 9) + "\t y \t"+ (7 - entry1.getKey()) );
+                              x.add(entry.getValue());
+                              y.add(entry1.getValue());
+                              // memory.addElement("x:    " + ap.getKey() + "      y:  " + ap.getValue());
+                                model4.insertRow(count3++, new Object[]{ap.getKey(), ap.getValue()});
+                                model3.insertRow(count2++, new Object[]{entry.getValue(), entry1.getValue() });
                         }
                     }
-                    else
+                    else 
                     {
-                        if (entry.getValue() <= 250)
+                        if(ap.getKey().equals((entry.getKey() - 14)) && ap.getValue().equals((12 - entry1.getKey())))
                         {
-                            if(ap.getKey().equals((entry.getKey() - 9)) && ap.getValue().equals((7 - entry1.getKey())))
-                            {
-                                x.add(entry.getValue());
-                                y.add(entry1.getValue());
-                            }
+                              x.add(entry.getValue());
+                              y.add(entry1.getValue());
+                               //memory.addElement("x:    " + ap.getKey() + "      y:  " + ap.getValue());
+                               model4.insertRow(count3++, new Object[]{ap.getKey(), ap.getValue()});
+                               model3.insertRow(count2++, new Object[]{entry.getValue(), entry1.getValue() });
                         }
-                        else
-                        {
-                            if(ap.getKey().equals((entry.getKey() - 9)) && ap.getValue().equals((7 - entry1.getKey())))
-                            {
-                                x.add(entry.getValue());
-                                y.add(entry1.getValue());
-                            }
-                        }
-
                     }
+                    
                 }
 
             }
         }
        // System.out.println(history);
-         jList1.setModel(memory);
+       //  jList1.setModel(memory);
         g.setColor(Color.red); //Set the Color of Graph
         int xpoints[] = x.stream().mapToInt(i -> i).toArray(); // Convert List to Array
         int ypoints[] = y.stream().mapToInt(i -> i).toArray(); //Convert List to Array
         g.drawPolyline(xpoints, ypoints, x.size()); // Draws the Graph
-        
-        
     }
     private static HashMap<Integer, Integer> x_yPoints(int slope1, int slope2)
     {
         HashMap<Integer, Integer> vpoints1 = new HashMap<>();
-        for(int a = -10 ;a< 10; a++)
+        for(int a = -30 ;a<= 30; a++)
         {
             int vpoint = slope1*(a)+slope2;
+          //  System.out.println("X\t" + a + "\tY:\t" + vpoint + "\tSlope1:\t" + slope1 + "\tSlope2:\t" + slope2);
             vpoints1.put(a, vpoint); // get the X and y Values
         }
         return vpoints1;
@@ -499,9 +494,24 @@ public class Chart extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     // End of variables declaration//GEN-END:variables
 
 }

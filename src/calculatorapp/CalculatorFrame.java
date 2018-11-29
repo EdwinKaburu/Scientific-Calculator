@@ -6,6 +6,8 @@
 package calculatorapp;
 
 import java.awt.event.ActionEvent;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,9 +36,9 @@ public class CalculatorFrame extends javax.swing.JFrame {
     //Numbers Are Stored as A string Then Sorted Out in the CheckValues Method and the Equation
     List<String> numbers = new ArrayList<String>(){};
     // Result
-    int result =0;
+//    int result =0;
     //Final Result
-    float pointto =0;
+    double pointto =0;
     //Historical Values are Stored and Can be Saved to Word Document
     DefaultListModel memory = new DefaultListModel();
     // Slider Default Value of One Iterations
@@ -55,7 +57,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
         });
          // A List to Store the Buttons Need to Perform Calculations
         List<JButton> numbersLetters = Arrays.asList(btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine, btnZero,
-                btnAdd, btnDecimal, btnDivide, btnPoistiveNeg, btnSubstract, btnPercentage,btnMult); 
+                btnAdd, btnDecimal, btnDivide, btnSubstract, btnMult); 
         // A List to Store the Buttons Need to Perform Calculations
         for (JButton buttons : numbersLetters) {
             // A Listener to Capture Which Buttons was Clicked and To get Its Values
@@ -97,8 +99,6 @@ public class CalculatorFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnPoistiveNeg = new javax.swing.JButton();
-        btnPercentage = new javax.swing.JButton();
         btnAC = new javax.swing.JButton();
         btnSeven = new javax.swing.JButton();
         btnEight = new javax.swing.JButton();
@@ -161,14 +161,6 @@ public class CalculatorFrame extends javax.swing.JFrame {
         jLabel2.setToolTipText("");
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
-
-        btnPoistiveNeg.setBackground(new java.awt.Color(255, 0, 0));
-        btnPoistiveNeg.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnPoistiveNeg.setText("+/-");
-
-        btnPercentage.setBackground(new java.awt.Color(255, 0, 0));
-        btnPercentage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnPercentage.setText("%");
 
         btnAC.setBackground(new java.awt.Color(255, 0, 0));
         btnAC.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -324,13 +316,9 @@ public class CalculatorFrame extends javax.swing.JFrame {
                                     .addComponent(btnSeven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnAC, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnEight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnPoistiveNeg))
+                                .addComponent(btnEight, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnNine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnPercentage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(btnNine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -370,13 +358,10 @@ public class CalculatorFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPoistiveNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnDivide, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnAC, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnPercentage, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAC, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnMult, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -487,19 +472,26 @@ public class CalculatorFrame extends javax.swing.JFrame {
         // History to be Stored
         String history = "";
         // Get the History Data from the Numbers
-        for(String s : numbers)
+        if(numbers.isEmpty())
         {
-            // Concate All Values In the List into One String 
-            history = history.concat(s);
+            history = "0";
         }
+        else
+        {
+            for (String s : numbers)
+            {
+                // Concate All Values In the List into One String 
+                history = history.concat(s);
+            }
+        }
+        
         // Add it to the Jlist  and It is Displayed 
-        memory.addElement(history.concat(" = " + Float.toString(pointto)));
+        memory.addElement(history.concat(" = " + Double.toString(ResultRound(pointto))));
          // Add it to the Jlist  and It is Displayed 
         jList1.setModel(memory);
         
         //Clear All Values Inlcude the List
         numbers.clear();
-        result = 0;
         pointto= 0;
         jLabel1.setText("");
         //Reset Calculator
@@ -521,7 +513,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
         int count = 0;
         //Initialize the Sum,Division,Multiply and Substract Componenets
         int sum1, sum2;sum1 = sum2 = 0;
-        int div1, div2; div1 = div2 = 0;
+        double div1, div2;
         int multi1, multi2;multi1 = multi2 = 0;
         int sub1, sub2;sub1 = sub2 = 0;
         //Iterate Thru the List of the CheckBoxes
@@ -534,7 +526,10 @@ public class CalculatorFrame extends javax.swing.JFrame {
                     //Count Number of Iterations 
                     count++;
                     //Additions
-                    switch (input.getText()) {
+                    try
+                    {
+                         switch (input.getText()) {
+                        
                         //Divison
                         case "Add":
                             sum1 = rand.nextInt(100); // A Random Values
@@ -558,14 +553,14 @@ public class CalculatorFrame extends javax.swing.JFrame {
                             div2 = rand.nextInt(50);
                             
                             // Display Random Values and Get User Input 
-                            float result2 = Float.parseFloat(JOptionPane.showInputDialog("What is The Division of: " + div1 + " / " + div2 + "\nPlease Round To Previous Digit"));
-                            
-                            if (result2 == (div1 / div2)) {
+                            double result2 = Double.parseDouble(JOptionPane.showInputDialog("What is The Division of: " + div1 + " / " + div2 + "\nPlease Round To 3 Digits if Possible"));
+                            //ResultRound(double value)
+                            if (ResultRound(result2) == ResultRound((div1 / div2))) {
                                 //Correct Dislay Correct Answer
-                                jLabel1.setText("Correct Division of  " + div1 + " / " + div2 + "=" + result2);
+                                jLabel1.setText("Correct Division of  " + div1 + " / " + div2 + "=" + ResultRound(result2));
                             } else {
                                 //Incorrect Display Wrong Answer
-                                jLabel1.setText("Sorry InCorrect,  the Division is " + (div1 / div2));
+                                jLabel1.setText("Sorry InCorrect,  the Division is " + ResultRound((div1 / div2)));
                             }
                             break;
                         //Substraction
@@ -603,21 +598,35 @@ public class CalculatorFrame extends javax.swing.JFrame {
                             jLabel1.setText("Sorry Unknown Error is ");
                             break;
                     }
+                    }
+                    catch (NumberFormatException e)
+                    {
+                       // JOptionPane.showMessageDialog(null, "Unkown Entry !! :   Please Enter Your Result Next Time. Can't Use Calculator  ");
+                         JOptionPane.showMessageDialog(null,"Unkown Entry !! : Please Enter Your Result Next Time. Can't Use Calculator","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }
+                   
                 }
 
-            } else {
-                jLabel1.setText("System Failure : Select CheckBox Options");
             }
         }
     }//GEN-LAST:event_btnBeginActionPerformed
 
     private void btnGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraphActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Graph is a Prototype, Some Features Might Not Perform as Expected");
+        
+        //Opens the Charts
+//        JOptionPane.showMessageDialog(null, "Graph is a Prototype, Some Features Might Not Perform as Expected");
         Chart openGraph = new Chart();
         openGraph.setVisible(true);
     }//GEN-LAST:event_btnGraphActionPerformed
 
+    //Return double with 3 Decimal Places 
+     public static double ResultRound(double value) {
+        
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(3, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
      private void Results()
     {
         //Method is Intended Only To Compute Result and To Display it to the User
@@ -631,14 +640,15 @@ public class CalculatorFrame extends javax.swing.JFrame {
                 count++;//Counts 
                 if(count <= 1)
                 {
+                 
                     //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Sum them up
-                    pointto += Float.parseFloat(Equation(numbers).get(i - 1)) + Float.parseFloat(Equation(numbers).get(i + 1));
+                    pointto += Double.parseDouble(Equation(numbers).get(i - 1)) + Double.parseDouble(Equation(numbers).get(i + 1));
                 }
                 else 
                 {
                     //if there is more is takes the Next Digit A-head from Current and Sums it Up 
                     
-                    pointto += Float.parseFloat(Equation(numbers).get(i + 1));
+                    pointto += Double.parseDouble(Equation(numbers).get(i + 1));
                 }
           }
           else if(Equation(numbers).get(i).equals("*"))// Find the Multiplication Sign Location from the Equation Method
@@ -647,12 +657,12 @@ public class CalculatorFrame extends javax.swing.JFrame {
                if(count <= 1)
                {
                     //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Multi them up
-                    pointto += Float.parseFloat(Equation(numbers).get(i - 1)) * Float.parseFloat(Equation(numbers).get(i + 1));
+                    pointto += Double.parseDouble(Equation(numbers).get(i - 1)) * Double.parseDouble(Equation(numbers).get(i + 1));
                }
                else
                {
                    //if there is more is takes the Next Digit A-head from Current and Mulit it Up 
-                    pointto *=  Float.parseFloat(Equation(numbers).get(i + 1));
+                    pointto *=  Double.parseDouble(Equation(numbers).get(i + 1));
                }
           } 
           else if(Equation(numbers).get(i).equals("/"))
@@ -661,12 +671,12 @@ public class CalculatorFrame extends javax.swing.JFrame {
                if(count <= 1)
                {
                    //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Divide them up
-                    pointto += Float.parseFloat(Equation(numbers).get(i - 1)) / Float.parseFloat(Equation(numbers).get(i + 1));
+                    pointto += Double.parseDouble(Equation(numbers).get(i - 1)) / Double.parseDouble(Equation(numbers).get(i + 1));
                }
                else
                {
                    //if there is more is takes the Next Digit A-head from Current and Divide it Up 
-                   pointto /= Float.parseFloat(Equation(numbers).get(i + 1));
+                   pointto /= Double.parseDouble(Equation(numbers).get(i + 1));
                }
                
           }
@@ -676,12 +686,12 @@ public class CalculatorFrame extends javax.swing.JFrame {
                if(count <= 1)
                {
                    //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Substract them up
-                   pointto += Float.parseFloat(Equation(numbers).get(i - 1)) - Float.parseFloat(Equation(numbers).get(i + 1));
+                   pointto += Double.parseDouble(Equation(numbers).get(i - 1)) - Double.parseDouble(Equation(numbers).get(i + 1));
                }
                else
                {
                    //if there is more is takes the Next Digit A-head from Current and Substract it Up 
-                    pointto -= Float.parseFloat(Equation(numbers).get(i + 1));
+                    pointto -= Double.parseDouble(Equation(numbers).get(i + 1));
                }
           }
           
@@ -711,7 +721,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
            */
        
       }
-        jLabel1.setText(Float.toString(pointto)); // Display the Result on the Label
+        jLabel1.setText(Double.toString(ResultRound(pointto))); // Display the Result on the Label
     }
     private static List<String> Equation(List<String>numbers)
     {
@@ -821,16 +831,6 @@ public class CalculatorFrame extends javax.swing.JFrame {
         
         return setIn_Point2;
     }
-    private static String WordReturn(int startingPoint, List<String> numbers)
-    {
-        String return_digit = "";
-
-        for (int ab = 0; ab < startingPoint; ab++) {
-            return_digit = return_digit.concat(numbers.get(ab));
-
-        }
-        return return_digit;
-    }
     /*Method doesn't function are Required*/
     private static Map<String,List<Integer>> CheckValue(List<String> numbers)
     {
@@ -905,8 +905,6 @@ public class CalculatorFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnMult;
     private javax.swing.JButton btnNine;
     private javax.swing.JButton btnOne;
-    private javax.swing.JButton btnPercentage;
-    private javax.swing.JButton btnPoistiveNeg;
     private javax.swing.JButton btnSeven;
     private javax.swing.JButton btnSix;
     private javax.swing.JButton btnSubstract;
