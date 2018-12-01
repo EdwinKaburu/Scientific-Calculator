@@ -44,9 +44,9 @@ public class Chart extends javax.swing.JFrame {
     public Chart() {
         initComponents();
         
-        UIManager UI = new UIManager();
-        UI.put("OptionPane.background", Color.red);
-        UI.put("Panel.background", Color.red);
+//        UIManager UI = new UIManager();
+//        UI.put("OptionPane.background", Color.red);
+//        UI.put("Panel.background", Color.red);
  
         model1 = (DefaultTableModel) jTable1.getModel();
         model2 = (DefaultTableModel) jTable2.getModel();

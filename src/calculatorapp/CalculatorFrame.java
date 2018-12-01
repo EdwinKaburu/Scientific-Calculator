@@ -5,6 +5,7 @@
  */
 package calculatorapp;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -35,6 +36,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
     
     //Numbers Are Stored as A string Then Sorted Out in the CheckValues Method and the Equation
     List<String> numbers = new ArrayList<String>(){};
+    Color jPan_color ;
     // Result
 //    int result =0;
     //Final Result
@@ -79,7 +81,7 @@ public class CalculatorFrame extends javax.swing.JFrame {
 
             });
         }
-        
+        jPan_color = jPanel1.getBackground();
     }
 
     /**
@@ -146,8 +148,8 @@ public class CalculatorFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,6 +495,8 @@ public class CalculatorFrame extends javax.swing.JFrame {
         //Clear All Values Inlcude the List
         numbers.clear();
         pointto= 0;
+        jLabel1.setForeground(Color.black);
+        jPanel1.setBackground(jPan_color);
         jLabel1.setText("");
         //Reset Calculator
     }//GEN-LAST:event_btnACActionPerformed
@@ -629,99 +633,238 @@ public class CalculatorFrame extends javax.swing.JFrame {
     }
      private void Results()
     {
-        //Method is Intended Only To Compute Result and To Display it to the User
+        double multiBy = 0;
+        if(SymbolsCount(Equation(numbers)) > 2)
+        {
+            jLabel1.setForeground(Color.red);
+            jPanel1.setBackground(Color.BLACK);
+            jLabel1.setText("This Equation Can be Simplified,[ A + B + C = D ]"); 
+        }
+        else if(SymbolsCount(Equation(numbers)) < 2)
+        {
+            jLabel1.setText("This Equatiosd"); 
+            for (Map.Entry<String, List<Integer>> entry : CheckValue(Equation(numbers)).entrySet()) 
+            {
+                for(int input : entry.getValue())
+                {
+                      for(int a = 0; a < Equation(numbers).size(); a++)
+                      {
+                          if(a == input)
+                          {
+                              switch (Equation(numbers).get(input)) {
+                                  case "/":
+                                      pointto += (Double.parseDouble(Equation(numbers).get(input - 1)) / Double.parseDouble(Equation(numbers).get(input +1 )));
+                                      break;
+                                  case "*":
+                                      pointto += (Double.parseDouble(Equation(numbers).get(input - 1)) * Double.parseDouble(Equation(numbers).get(input +1 )));
+                                      break;
+                                  case "-":
+                                      pointto += (Double.parseDouble(Equation(numbers).get(input - 1)) - Double.parseDouble(Equation(numbers).get(input +1 )));
+                                      break;
+                                  default:
+                                      pointto += (Double.parseDouble(Equation(numbers).get(input - 1)) + Double.parseDouble(Equation(numbers).get(input +1 )));
+                                      break;
+                              }
+                          }
+                      }
+                }
+            }
+            jLabel1.setForeground(Color.GREEN);
+            jLabel1.setText( UserEntry(Equation(numbers)) + " = "+Double.toString(ResultRound(pointto))); // Display the Result on the Label
+        }
+        else
+        {
+            //Method is Intended Only To Compute Result and To Display it to the User
+        for (Map.Entry<String, List<Integer>> entry : CheckValue(Equation(numbers)).entrySet()) 
+        {
+            for(int input : entry.getValue())
+            {
+                for(int a = 0; a < Equation(numbers).size(); a++)
+                {
+                    
+                    if(a == input)
+                    {
+                        if(Equation(numbers).get(input).equals("/") || Equation(numbers).get(input).equals("*"))
+                        {
+                           try
+                           {
+                               if(input > 1)
+                               {
+                                   if(Equation(numbers).get(input).equals("*"))
+                                   {
+                                        if(Equation(numbers).get(input - 2).equals("/"))
+                                        {
+                                            multiBy = Double.parseDouble(Equation(numbers).get(input - 3)) / Double.parseDouble(Equation(numbers).get(input - 1 ));
+                                             pointto = multiBy * Double.parseDouble(Equation(numbers).get(input +1 ));
+                                            System.out.println("Returning One Value\t"+ Equation(numbers).get(input - 1) + "\t" + Equation(numbers).get(input +1 ) + "\t" + (6/3*4));
+                                           
+                                        }
+                                        else
+                                        {
+                                            if(Equation(numbers).get(input -2).equals("+"))
+                                            {
+                                                 System.out.println("Vap\t" +  Equation(numbers).get(input - 3));
+                                                 pointto += Double.parseDouble( Equation(numbers).get(input - 3)) + (Double.parseDouble(Equation(numbers).get(input - 1)) * Double.parseDouble(Equation(numbers).get(input +1 )));
+                                            }
+                                            else
+                                            {
+                                                pointto += Double.parseDouble( Equation(numbers).get(input - 3)) - (Double.parseDouble(Equation(numbers).get(input - 1)) * Double.parseDouble(Equation(numbers).get(input +1 )));
+                                            }
+                                        }
+                                   }
+                                   else
+                                   {
+                                       if (Equation(numbers).get(input - 2).equals("-") || Equation(numbers).get(input - 2).equals("+"))
+                                       {
+                                           if (Equation(numbers).get(input - 2).equals("-")) 
+                                           {
+                                                pointto += Double.parseDouble( Equation(numbers).get(input - 3)) - (Double.parseDouble(Equation(numbers).get(input - 1)) / Double.parseDouble(Equation(numbers).get(input +1 )));
+                                           }
+                                           else
+                                           {
+                                                pointto += Double.parseDouble( Equation(numbers).get(input - 3)) + (Double.parseDouble(Equation(numbers).get(input - 1)) / Double.parseDouble(Equation(numbers).get(input +1 )));
+                                           }
+                                       }
+                                   }
+                               }
+                               else
+                               {
+                                   if (Equation(numbers).get(input).equals("*")) 
+                                   {
+                                      // pointto+= Double.parseDouble(Equation(numbers1).get(input - 1)) * Double.parseDouble(Equation(numbers1).get(input + 1));
+                                       if(Equation(numbers).get(input +2).equals("*"))
+                                       {
+                                            pointto += Double.parseDouble(Equation(numbers).get(input -1)) * Double.parseDouble( Equation(numbers).get(input +1)) * Double.parseDouble( Equation(numbers).get(input +3));
+                                       }
+                                       else
+                                       {
+                                           if(Equation(numbers).get(input +2).equals("-") || Equation(numbers).get(input +2).equals("+"))
+                                           {
+                                               if(Equation(numbers).get(input +2).equals("-"))
+                                               {
+                                                   pointto += (Double.parseDouble(Equation(numbers).get(input -1)) * Double.parseDouble( Equation(numbers).get(input +1))) - Double.parseDouble( Equation(numbers).get(input +3));
+                                               }
+                                               else 
+                                               {
+                                                   pointto += Double.parseDouble(Equation(numbers).get(input -1)) * Double.parseDouble( Equation(numbers).get(input +1)) + Double.parseDouble( Equation(numbers).get(input +3));
+                                               }
+                                           }
+                                           else
+                                           {
+                                                //6*3/4
+                                                pointto+= Double.parseDouble(Equation(numbers).get(input - 1)) * Double.parseDouble(Equation(numbers).get(input + 1)) / Double.parseDouble( Equation(numbers).get(input +3));
+                                              // System.out.println("Multi devca");
+                                           }
+                                          
+                                       }
+                                   }
+                                   else
+                                   {
+                                       if(!Equation(numbers).get(input +2).equals("*"))
+                                       {
+                                           System.out.println("No Multi");
+                                           if(Equation(numbers).get(input +2).equals("-") || Equation(numbers).get(input +2).equals("+") ||Equation(numbers).get(input +2).equals("/"))
+                                           {
+                                               if(Equation(numbers).get(input +2).equals("-"))
+                                               {
+                                                   System.out.println("Minus");
+                                                   pointto += (Double.parseDouble(Equation(numbers).get(input -1)) / Double.parseDouble( Equation(numbers).get(input +1))) - Double.parseDouble( Equation(numbers).get(input +3));
+                                               }
+                                               else if (Equation(numbers).get(input +2).equals("/"))
+                                               {
+                                                   System.out.println("Div\t" + Equation(numbers).get(input -1) + "\t" + Equation(numbers).get(input +1) + "\t" + Equation(numbers).get(input +3));
+                                                   pointto += Double.parseDouble(Equation(numbers).get(input -1)) / Double.parseDouble( Equation(numbers).get(input +1)) / Double.parseDouble( Equation(numbers).get(input +3));
+                                               }
+                                               else
+                                               {
+                                                   System.out.println("Add");
+                                                   pointto += (Double.parseDouble(Equation(numbers).get(input -1)) / Double.parseDouble( Equation(numbers).get(input +1))) + Double.parseDouble( Equation(numbers).get(input +3));
+                                               }
+                                           }
+                                       }
+                                   }
+                               }
+                               
+                           }
+                           catch(IndexOutOfBoundsException ex)
+                           {
+                               pointto *= 1;
+                           }
+                          
+                        }
+                        else
+                        {
+                            if (input > 1) 
+                            {
+                                if (Equation(numbers).get(input).equals("+"))
+                                {
+                                    while (!Equation(numbers).get(input - 2).equals("*") && !Equation(numbers).get(input - 2).equals("/") ) 
+                                    {
+                                        if (Equation(numbers).get(input - 2).equals("-"))
+                                        {
+                                            System.out.println(Equation(numbers).get(input - 3));
+                                            pointto += Double.parseDouble(Equation(numbers).get(input - 3)) - Double.parseDouble(Equation(numbers).get(input - 1)) + Double.parseDouble(Equation(numbers).get(input + 1));
+                                        } 
+                                        else 
+                                        {
+                                            pointto += Double.parseDouble(Equation(numbers).get(input - 3)) + Double.parseDouble(Equation(numbers).get(input - 1)) + Double.parseDouble(Equation(numbers).get(input + 1));
+                                        }
+
+                                        break;
+                                    }
+
+                                }
+                                else
+                                {
+                                    while (!Equation(numbers).get(input - 2).equals("*") && !Equation(numbers).get(input - 2).equals("/")) 
+                                    {
+                                        if (Equation(numbers).get(input - 2).equals("+"))
+                                        {
+                                            System.out.println("2"+Equation(numbers).get(input - 3));
+                                            pointto += Double.parseDouble(Equation(numbers).get(input - 3)) + Double.parseDouble(Equation(numbers).get(input - 1)) - Double.parseDouble(Equation(numbers).get(input + 1));
+                                        } 
+                                        else 
+                                        {
+                                            pointto += Double.parseDouble(Equation(numbers).get(input - 3)) - Double.parseDouble(Equation(numbers).get(input - 1)) - Double.parseDouble(Equation(numbers).get(input + 1));
+                                        }
+
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                
+            }
+        }
+        jLabel1.setForeground(Color.GREEN);
+        jLabel1.setText( UserEntry(Equation(numbers)) + " = "+Double.toString(ResultRound(pointto))); // Display the Result on the Label
+        }
         
-        //Count Num of Iterations
-       int count = 0;
-      for(int i = 0; i < Equation(numbers).size(); i++)
-      {
-          if(Equation(numbers).get(i).equals("+")) // Find the Plus Sign Location from the Equation Method
-          {
-                count++;//Counts 
-                if(count <= 1)
-                {
-                 
-                    //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Sum them up
-                    pointto += Double.parseDouble(Equation(numbers).get(i - 1)) + Double.parseDouble(Equation(numbers).get(i + 1));
-                }
-                else 
-                {
-                    //if there is more is takes the Next Digit A-head from Current and Sums it Up 
-                    
-                    pointto += Double.parseDouble(Equation(numbers).get(i + 1));
-                }
-          }
-          else if(Equation(numbers).get(i).equals("*"))// Find the Multiplication Sign Location from the Equation Method
-          {
-               count++;
-               if(count <= 1)
-               {
-                    //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Multi them up
-                    pointto += Double.parseDouble(Equation(numbers).get(i - 1)) * Double.parseDouble(Equation(numbers).get(i + 1));
-               }
-               else
-               {
-                   //if there is more is takes the Next Digit A-head from Current and Mulit it Up 
-                    pointto *=  Double.parseDouble(Equation(numbers).get(i + 1));
-               }
-          } 
-          else if(Equation(numbers).get(i).equals("/"))
-          {
-               count++;
-               if(count <= 1)
-               {
-                   //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Divide them up
-                    pointto += Double.parseDouble(Equation(numbers).get(i - 1)) / Double.parseDouble(Equation(numbers).get(i + 1));
-               }
-               else
-               {
-                   //if there is more is takes the Next Digit A-head from Current and Divide it Up 
-                   pointto /= Double.parseDouble(Equation(numbers).get(i + 1));
-               }
-               
-          }
-          else if(Equation(numbers).get(i).equals("-"))
-          {
-               count++;
-               if(count <= 1)
-               {
-                   //If there is less than 1 it take the Previous Digit and the Next Digit A-head and Substract them up
-                   pointto += Double.parseDouble(Equation(numbers).get(i - 1)) - Double.parseDouble(Equation(numbers).get(i + 1));
-               }
-               else
-               {
-                   //if there is more is takes the Next Digit A-head from Current and Substract it Up 
-                    pointto -= Double.parseDouble(Equation(numbers).get(i + 1));
-               }
-          }
-          
-          /*
-                ***   The Following is the Logic flows of this Method(Results)
-                     1+2 => Falls under less than 1 so it takes the Previous and the Next Digit A-head  from the Current Plus Location and Sums it Up
-                            ** Step1 :  1+2  = 3 ; Three is Returned as Result
-                    
-                     1+2+4 => Falls under More than 1 so it Takes the Previous and the Next Digit A-head from the Current Plus Locations. 
-                              And Then it Switch to the Next Plus in The Eqautions and Sum it up.
-                    
-                              ** Step1 :  1+2  = 3 ;
-                              
-                              ** Step2 : 3 + 4 = 7 , Seven is Returned as Result And Displayed 
-                              ** Final Deduction : 2 Plus Symbols at 1 and 3  
-                                                   1    +   2   +   4
-                                                   -    -   -   -   -
-                                                   0    1   2   3   4  => Index of the Symbol Locations
-                    
-                ***   The For Loops Handles the With Symbol should be Next eg.
-          
-                    69 - 2 + 5 -8
-                              ** Step 1 : 69 - 2 =   67; 
-                              ** Step 2 : 67 + 5  =  72;
-                              ** Step 3 : 72 - 8 =   64; Sixty Four is Returned as Result And Displayed 
-                    
-           */
-       
-      }
-        jLabel1.setText(Double.toString(ResultRound(pointto))); // Display the Result on the Label
+        
+    }
+    private static String UserEntry(List<String> item)
+    {
+        String sp = "";
+        for (String s : item) {
+            System.out.println(s);
+            sp += s;
+        }
+        return sp;
+    }
+    private static int SymbolsCount(List<String> item)
+    {
+        int count = 0;
+        for(String ite : item)
+        {
+            if(ite.equals("+") || ite.equals("-") || ite.equals("*")|| ite.equals("/"))
+            {
+                count++;
+            }
+        }
+        return count;
     }
     private static List<String> Equation(List<String>numbers)
     {
